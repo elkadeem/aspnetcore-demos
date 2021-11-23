@@ -1,0 +1,5 @@
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\publish\MOE31Demos
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\publish\MOE31Demos.dll
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\publish\MOE31Demos.deps.json
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\publish\MOE31Demos.runtimeconfig.json
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\publish\MOE31Demos.pdb

@@ -1,0 +1,13 @@
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\linux-x64\MOE31Demos
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\linux-x64\MOE31Demos.deps.json
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\linux-x64\MOE31Demos.runtimeconfig.json
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\linux-x64\MOE31Demos.runtimeconfig.dev.json
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\linux-x64\MOE31Demos.dll
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\bin\Release\netcoreapp3.1\linux-x64\MOE31Demos.pdb
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\obj\Release\netcoreapp3.1\linux-x64\MOE31Demos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\obj\Release\netcoreapp3.1\linux-x64\MOE31Demos.AssemblyInfoInputs.cache
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\obj\Release\netcoreapp3.1\linux-x64\MOE31Demos.AssemblyInfo.cs
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\obj\Release\netcoreapp3.1\linux-x64\MOE31Demos.csproj.CoreCompileInputs.cache
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\obj\Release\netcoreapp3.1\linux-x64\MOE31Demos.dll
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\obj\Release\netcoreapp3.1\linux-x64\MOE31Demos.pdb
+C:\Users\welkadim\source\repos\MOE31Demos\MOE31Demos\obj\Release\netcoreapp3.1\linux-x64\MOE31Demos.genruntimeconfig.cache

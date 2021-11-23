@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# SA1515: Single-line comment should be preceded by blank line
+dotnet_diagnostic.SA1515.severity = error
