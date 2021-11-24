@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -32,16 +32,39 @@
                 <input asp-for="Birthdate" class="form-control" />
                 <span asp-validation-for="Birthdate" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <select asp-for="Country" class="form-control">
+                    <option value="EG">Egypt</option>
+                    <option value="SA">Saudi Arabia</option>
+                    <option value="UK">UK</option>
+                </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <fieldset>
+                    <legend>@Html.DisplayNameFor(model => model.Tags)</legend>
+                    <div class="form-group form-check">
+                        @for (int i = 1; i <= 10; i++)
+                        {
+                            <div>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="Tags[@(i)]" type="checkbox" />
+                                    Tag @i
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </fieldset>
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                 </label>
             </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
-            </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -53,3 +76,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

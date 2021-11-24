@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FirtMVC.App.Controllers
@@ -76,8 +77,27 @@ namespace FirtMVC.App.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Customer customer)
         {
+            
             try
-            {
+            {               
+                if (customer.Tags == null || customer.Tags.Count == 0)
+                {
+                    ModelState.AddModelError("Tags", "يجب أختيار تاج واحد علي الأقل.");
+                }
+
+                if (customer.Birthdate > DateTime.Today.AddYears(-18))
+                {
+                    ModelState.AddModelError("Birthdate", "يجب أن تكون أكبر من 18 عام");
+                }
+
+                if(Customers.Any(c => c.Email== customer.Email))
+                {
+                    ModelState.AddModelError("", "الإيميل مكرر");
+                }
+
+                if (!ModelState.IsValid)   // If(Page.IsValid)
+                    return View(customer);
+
                 customer.Id = Guid.NewGuid();
                 Customers.Add(customer);
                 TempData["Message"] = "Succeeded";
@@ -103,10 +123,13 @@ namespace FirtMVC.App.Controllers
         // POST: CustomersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Guid id, Customer customer)
+        public ActionResult Edit(Guid id, [Bind("Name", "Phone", "Birthdate", "Country", "Tags")][FromBody]Customer customer)
         {
             try
             {
+                if (!ModelState.IsValid)   // If(Page.IsValid)
+                    return View(customer);
+
                 var item = Customers.FirstOrDefault(c => c.Id == id);
 
                 if (item == null)
@@ -114,8 +137,8 @@ namespace FirtMVC.App.Controllers
 
                 item.Birthdate = customer.Birthdate;
                 item.Country = customer.Country;
-                item.Email = customer.Email;
-                item.IsActive = customer.IsActive;
+                //item.Email = customer.Email;
+                //item.IsActive = customer.IsActive;
                 item.Name = customer.Name;
                 item.Phone = customer.Phone;
 

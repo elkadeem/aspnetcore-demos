@@ -1,4 +1,5 @@
-﻿using FirtMVC.App.Models;
+﻿using FirtMVC.App.Entities;
+using FirtMVC.App.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -24,7 +25,7 @@ namespace FirtMVC.App.Controllers
         {            
             Customer customer = new Customer
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Name = "Wael Elkadim"
             };
 
