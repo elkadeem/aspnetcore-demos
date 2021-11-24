@@ -1,6 +1,48 @@
-﻿@model Customer
+﻿@{
+    DateTime GetDateTime(int days)
+    {
+        return DateTime.Now.AddDays(days);
+    }
+
+    var customer = (Customer)ViewBag.Customer;
+}
+
 <div>
-    <div>Version 2</div>
-    <div>Id: @Model.Id</div>
-    <div>Name: @Model.Name</div>
+    <h1>View Bage</h1>
+    <div>
+        @ViewBag.CurrentDate <br />
+        @customer.Name
+    </div>
+</div>
+<div>
+    <h1>View Date</h1>
+    <div>
+        @ViewData["CurrentDate2"] <br />
+        @(((Customer)ViewData["Customer2"]).Name)
+    </div>
+</div>
+<div>
+    Current Date: @DateTime.Now
+    <p>Date after 10 days: @GetDateTime(10)</p>
+    <div>
+        @if (DateTime.Today.DayOfWeek == DayOfWeek.Thursday)
+        {
+            <div style="color:red">Hiiiiiii</div>
+        }
+        else
+        {
+            <div style="color:green">Hiiiiiii</div>
+        }
+    </div>
+    <div>
+        <ul>
+            @for (int i = 0; i <= 10; i++)
+            {
+                <li>
+                    email@(i ==0? "20": i.ToString())@@hotmail.com
+                </li>
+            }
+        </ul>
+    </div>
+    <div>@**@</div>
 </div>

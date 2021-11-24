@@ -1,9 +1,9 @@
 ﻿using FirtMVC.App.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace FirtMVC.App.Controllers
@@ -80,6 +80,7 @@ namespace FirtMVC.App.Controllers
             {
                 customer.Id = Guid.NewGuid();
                 Customers.Add(customer);
+                TempData["Message"] = "Succeeded";
                 return RedirectToAction(nameof(Details), new { customer.Id });
             }
             catch

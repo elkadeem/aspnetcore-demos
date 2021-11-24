@@ -21,16 +21,20 @@ namespace FirtMVC.App.Controllers
         
 
         public IActionResult Name()
-        {
-            return NotFound();
+        {            
             Customer customer = new Customer
             {
                 Id = 1,
                 Name = "Wael Elkadim"
             };
 
+            ViewBag.CurrentDate = DateTime.Now;
+            ViewBag.Customer = customer;
+
+            ViewData["CurrentDate2"] = DateTime.Now;
+            ViewData["Customer2"] = customer;
             //return View("~/views/customers/xxy.cshmtl", customer);
-            return View("Name2", customer);
+            return View("Name2");
         }
 
         public IActionResult Index()
