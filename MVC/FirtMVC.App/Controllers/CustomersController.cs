@@ -1,5 +1,6 @@
 ﻿using FirtMVC.App.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,33 @@ namespace FirtMVC.App.Controllers
         // GET: CustomersController/Create
         public ActionResult Create()
         {
+            FillCountries();
             return View();
+        }
+
+        private void FillCountries()
+        {
+            List<Country> countries = new List<Country> {
+                new Country(1, "مصر"),
+                new Country(2, "السعودية"),
+                new Country(3, "الأمارات"),
+                new Country(4, "ليبيا"),
+            };
+
+            //Option 1 with Selected List Item
+            //ViewBag.Countries = new SelectList(countries, "Id", "Name", 2);
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (var country in countries)
+            {
+                items.Add(new SelectListItem
+                {
+                    Text = country.Name,
+                    Value = country.Id.ToString(),
+                    Selected = country.Id == 1
+                });
+            }
+            ViewBag.Countries = items;
         }
 
         // POST: CustomersController/Create
@@ -96,7 +123,10 @@ namespace FirtMVC.App.Controllers
                 }
 
                 if (!ModelState.IsValid)   // If(Page.IsValid)
+                {
+                    FillCountries();
                     return View(customer);
+                }
 
                 customer.Id = Guid.NewGuid();
                 Customers.Add(customer);
@@ -105,6 +135,7 @@ namespace FirtMVC.App.Controllers
             }
             catch
             {
+                FillCountries();
                 return View(customer);
             }
         }
@@ -117,6 +148,7 @@ namespace FirtMVC.App.Controllers
             if (customer == null)
                 return NotFound();
 
+            FillCountries();
             return View(customer);
         }
 
@@ -128,7 +160,10 @@ namespace FirtMVC.App.Controllers
             try
             {
                 if (!ModelState.IsValid)   // If(Page.IsValid)
+                {
+                    FillCountries();
                     return View(customer);
+                }
 
                 var item = Customers.FirstOrDefault(c => c.Id == id);
 
@@ -146,6 +181,7 @@ namespace FirtMVC.App.Controllers
             }
             catch
             {
+                FillCountries();
                 return View(customer);
             }
         }

@@ -24,11 +24,12 @@
 </div>
 <div class="form-group">
     <label asp-for="Country" class="control-label"></label>
-    <select asp-for="Country" class="form-control">
-        <option value="EG">Egypt</option>
-        <option value="SA">Saudi Arabia</option>
-        <option value="UK">UK</option>
-    </select>
+    @*<select asp-for="Country" asp-items="@((SelectList)ViewBag.Countries)" class="form-control">
+            <option value="0">Select</option>
+        </select>*@
+    <select asp-for="Country" asp-items="@((List<SelectListItem>)ViewBag.Countries)" class="form-control">
+            <option value="0">Select</option>
+        </select>
     <span asp-validation-for="Country" class="text-danger"></span>
 </div>
 <div class="form-group">
