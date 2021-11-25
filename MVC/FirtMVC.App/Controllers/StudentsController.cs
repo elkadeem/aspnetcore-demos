@@ -5,6 +5,11 @@ namespace FirtMVC.App.Controllers
 {
     public class StudentsController : Controller
     {
+
+        public StudentsController()
+        {
+
+        }
         public IActionResult Create()
         {
             return View();

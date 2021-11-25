@@ -1,12 +1,10 @@
 ﻿using FirtMVC.App.Entities;
 using FirtMVC.App.Models;
+using FirtMVC.App.Repos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FirtMVC.App.Controllers
 {
@@ -14,12 +12,17 @@ namespace FirtMVC.App.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly CustomersService customersService;
+        private readonly CountriesService countriesService;
+
+        public HomeController(CustomersService customersService
+            , CountriesService countriesService, ILogger<HomeController> logger)
         {
+            this.customersService = customersService ?? throw new ArgumentNullException(nameof(customersService));
+            this.countriesService = countriesService ?? throw new ArgumentNullException(nameof(countriesService));
+
             _logger = logger;
         }
-
-        
 
         public IActionResult Name()
         {            

@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstApp.empty", "FirstApp.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{E2ABA0E7-2DEA-4471-9499-D5CDA1A1AB3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirtMVC.App", "MVC\FirtMVC.App\FirtMVC.App.csproj", "{DF11DBFE-D6CC-4633-BDD0-9D562B6B6F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirtMVC.App", "MVC\FirtMVC.App\FirtMVC.App.csproj", "{DF11DBFE-D6CC-4633-BDD0-9D562B6B6F6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppForDI", "ConsoleAppForDI\ConsoleAppForDI.csproj", "{A1216CC8-8ADE-42D0-98DE-5BEDF316BFE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{DF11DBFE-D6CC-4633-BDD0-9D562B6B6F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF11DBFE-D6CC-4633-BDD0-9D562B6B6F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF11DBFE-D6CC-4633-BDD0-9D562B6B6F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1216CC8-8ADE-42D0-98DE-5BEDF316BFE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1216CC8-8ADE-42D0-98DE-5BEDF316BFE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1216CC8-8ADE-42D0-98DE-5BEDF316BFE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1216CC8-8ADE-42D0-98DE-5BEDF316BFE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

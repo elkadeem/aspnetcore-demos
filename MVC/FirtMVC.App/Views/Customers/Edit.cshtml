@@ -26,4 +26,34 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    jQuery(document).ready(function () {
+
+    getCities($('#@Html.IdFor(model => model.Country)').val());
+
+    $('#@Html.IdFor(model => model.Country)').change(function () {
+    var countryId = $(this).val();
+    getCities(countryId);
+    });
+
+    });
+
+        function getCities(countryId) {
+            if (!countryId || countryId === 0)
+                return;
+
+    $.getJSON('@Url.Action("Cities", "Customers")?countryId=' + countryId)
+    .done(function (data) {
+
+    $('#@Html.IdFor(model => model.City) option').remove();
+
+    $.each(data, function (index, item) {
+    var option = $('<option>').val(item.id).text(item.name);
+        $('#@Html.IdFor(model => model.City)').append(option);
+        });
+
+
+        });
+        }
+    </script>
 }

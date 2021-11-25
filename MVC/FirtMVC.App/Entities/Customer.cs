@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -31,7 +32,11 @@ namespace FirtMVC.App.Entities
 
         public string Country { get; set; }
 
+        public string City { get; set; }
+
         [Display(Name = "Activities")]
         public List<string> Tags { get; set; }
+
+        public IEnumerable<SelectListItem> Countries { get; set; }
     }
 }

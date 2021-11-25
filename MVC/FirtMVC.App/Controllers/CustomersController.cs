@@ -1,8 +1,12 @@
 ﻿using FirtMVC.App.Entities;
+using FirtMVC.App.Repos;
+using FirtMVC.App.Sample;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading;
@@ -42,12 +46,18 @@ namespace FirtMVC.App.Controllers
                 Country = "EG"
             },
         };
+        private readonly CustomersService customersService;
+        private readonly CountriesService countriesService;
+
         public CustomersController()
         {
-
+            SqlConnection connection = new SqlConnection("Connection string");
+            IRepository repository = new SqlRepository(connection);
+            this.countriesService = new CountriesService(repository);
+            this.customersService = new CustomersService(repository, countriesService);
         }
         // GET: CustomersController
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var items =  Customers
                 .OrderBy(c => c.Name)
@@ -70,33 +80,9 @@ namespace FirtMVC.App.Controllers
         // GET: CustomersController/Create
         public ActionResult Create()
         {
-            FillCountries();
-            return View();
-        }
-
-        private void FillCountries()
-        {
-            List<Country> countries = new List<Country> {
-                new Country(1, "مصر"),
-                new Country(2, "السعودية"),
-                new Country(3, "الأمارات"),
-                new Country(4, "ليبيا"),
-            };
-
-            //Option 1 with Selected List Item
-            //ViewBag.Countries = new SelectList(countries, "Id", "Name", 2);
-
-            List<SelectListItem> items = new List<SelectListItem>();
-            foreach (var country in countries)
-            {
-                items.Add(new SelectListItem
-                {
-                    Text = country.Name,
-                    Value = country.Id.ToString(),
-                    Selected = country.Id == 1
-                });
-            }
-            ViewBag.Countries = items;
+            Customer model = new Customer();
+            model.Countries = FillCountries();
+            return View(model);
         }
 
         // POST: CustomersController/Create
@@ -124,18 +110,19 @@ namespace FirtMVC.App.Controllers
 
                 if (!ModelState.IsValid)   // If(Page.IsValid)
                 {
-                    FillCountries();
+                    customer.Countries = FillCountries();
                     return View(customer);
                 }
 
                 customer.Id = Guid.NewGuid();
                 Customers.Add(customer);
                 TempData["Message"] = "Succeeded";
+                //Fire Event Country Create
                 return RedirectToAction(nameof(Details), new { customer.Id });
             }
             catch
             {
-                FillCountries();
+                customer.Countries = FillCountries();
                 return View(customer);
             }
         }
@@ -148,7 +135,7 @@ namespace FirtMVC.App.Controllers
             if (customer == null)
                 return NotFound();
 
-            FillCountries();
+            customer.Countries = FillCountries();
             return View(customer);
         }
 
@@ -161,7 +148,7 @@ namespace FirtMVC.App.Controllers
             {
                 if (!ModelState.IsValid)   // If(Page.IsValid)
                 {
-                    FillCountries();
+                    customer.Countries = FillCountries();
                     return View(customer);
                 }
 
@@ -181,7 +168,7 @@ namespace FirtMVC.App.Controllers
             }
             catch
             {
-                FillCountries();
+                customer.Countries = FillCountries();
                 return View(customer);
             }
         }
@@ -216,6 +203,42 @@ namespace FirtMVC.App.Controllers
             {
                 return View(customer);
             }
+        }
+
+        //Get: Customers/Cities?countryId={countryId}
+        public IActionResult Cities(int countryId)
+        {
+            return NotFound();
+            //ToDo: Get Data from datastore
+            List<City> cities = new List<City>();
+            for (int i = 1; i < 10; i++)
+            {
+                cities.Add(new City(i, $"Country-{countryId} City-{i}"));
+            }
+
+            return Json(cities);
+        }
+        private List<SelectListItem> FillCountries()
+        {
+            List<Country> countries = countriesService.GetAll();
+
+            //List<SelectListItem> items = new List<SelectListItem>();
+            //foreach (var country in countries)
+            //{
+            //    items.Add(new SelectListItem
+            //    {
+            //        Text = country.Name,
+            //        Value = country.Id.ToString(),
+            //        Selected = country.Id == 1
+            //    });
+            //}
+
+            return countries.Select(country => new SelectListItem
+            {
+                Text = country.Name,
+                Value = country.Id.ToString(),
+                Selected = country.Id == 1
+            }).ToList();
         }
     }
 }
