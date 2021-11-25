@@ -10,6 +10,9 @@ namespace FirtMVC.App.Controllers
         {
 
         }
+
+        //Index search by student name, Update, Delete, Details
+
         public IActionResult Create()
         {
             return View();

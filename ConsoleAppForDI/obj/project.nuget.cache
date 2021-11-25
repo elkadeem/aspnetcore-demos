@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qTdziGnC4DXvj1OODndFTM6NqswnAAtNxdif3//SPT1xJtqPzwu3S7a5DKg2dVwnW9M/lC52ggkYBSGjXuiwsA==",
+  "dgSpecHash": "ejDmni1QZS86dWP9T6eXBbrUS7VXdjxkM0TqdnJucHNm7bI4woC494AYC0J6lcchaxc91POyFujUQzNDORrhIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\welkadim\\source\\repos\\MOE31Demos\\ConsoleAppForDI\\ConsoleAppForDI.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\welkadim\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\welkadim\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\welkadim\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
