@@ -1,0 +1,110 @@
+﻿@using FirtMVC.App.Entities
+@model FirtMVC.App.Entities.Student
+
+@{
+    ViewData["Title"] = "Create";
+
+    bool IsLanguageSelected(string lang)
+    {
+        if (Model == null || Model.Languages == null || Model.Languages.Count == 0)
+            return false;
+
+        return Model.Languages.Contains(lang);
+    }
+}
+
+<h1>Create</h1>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FatherName" class="control-label"></label>
+                <input asp-for="FatherName" class="form-control" />
+                <span asp-validation-for="FatherName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FamilyName" class="control-label"></label>
+                <input asp-for="FamilyName" class="form-control" />
+                <span asp-validation-for="FamilyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthdate" class="control-label"></label>
+                <input asp-for="Birthdate" class="form-control" />
+                <span asp-validation-for="Birthdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gov" class="control-label"></label>
+                <select asp-for="Gov" class="form-control">
+                    <option value="الدقهلية">الدقهلية</option>
+                    <option value="القاهرة">القاهرة</option>
+                    <option value="الشرقية">الشرقية</option>
+                    <option value="الغربية">الغربية</option>
+                    <option value="المنوفية">المنوفية</option>
+                    <option value="الجيزة">الجيزة</option>
+                </select>
+                <span asp-validation-for="Gov" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <label><input type="radio" name="@nameof(Model.Gender)" @(Model?.Gender == Gender.Male ? "checked" : "") value="@Gender.Male" /> ذكر</label>
+                <label><input type="radio" name="@nameof(Model.Gender)" @(Model?.Gender == Gender.Female ? "checked" : "") value="@Gender.Female" /> أنثي</label>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Languages" class="control-label"></label>
+                <label>
+                    <input type="checkbox" name="@($"{nameof(Model.Languages)}[0]")"
+                           value="Ar" @(IsLanguageSelected("Ar")? "checked" : "") /> عربي
+                </label>
+                <label>
+                    <input type="checkbox" name="@($"{nameof(Model.Languages)}[1]")"
+                           value="En" @(IsLanguageSelected("En")? "checked" : "")/> إنجليزي
+                </label>
+                <label>
+                    <input type="checkbox" name="@($"{nameof(Model.Languages)}[2]")"
+                           value="FR" @(IsLanguageSelected("FR")? "checked" : "")/> فرنسي
+                </label>
+                <label>
+                    <input type="checkbox" name="@($"{nameof(Model.Languages)}[2]")"
+                           value="GE" @(IsLanguageSelected("GE")? "checked" : "")/> ألماني
+                </label>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <textarea asp-for="Notes" class="form-control"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

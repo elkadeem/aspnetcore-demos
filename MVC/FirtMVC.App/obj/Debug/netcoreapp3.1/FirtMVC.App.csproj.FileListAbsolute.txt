@@ -118,3 +118,4 @@ C:\Users\welkadim\source\repos\MOE31Demos\MVC\FirtMVC.App\obj\Debug\netcoreapp3.
 C:\Users\welkadim\source\repos\MOE31Demos\MVC\FirtMVC.App\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Delete.cshtml.g.cs
 C:\Users\welkadim\source\repos\MOE31Demos\MVC\FirtMVC.App\obj\Debug\netcoreapp3.1\Razor\Views\Customers\Createhtmlhelper.cshtml.g.cs
 C:\Users\welkadim\source\repos\MOE31Demos\MVC\FirtMVC.App\obj\Debug\netcoreapp3.1\Razor\Views\Customers\_CustomerData.cshtml.g.cs
+C:\Users\welkadim\source\repos\MOE31Demos\MVC\FirtMVC.App\obj\Debug\netcoreapp3.1\Razor\Views\Students\Create.cshtml.g.cs
