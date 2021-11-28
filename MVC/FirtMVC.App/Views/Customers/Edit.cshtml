@@ -1,4 +1,4 @@
-﻿@model FirtMVC.App.Entities.Customer
+﻿@model FirtMVC.App.Models.CustomerViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -29,9 +29,9 @@
     <script>
     jQuery(document).ready(function () {
 
-    getCities($('#@Html.IdFor(model => model.Country)').val());
+    getCities($('#@Html.IdFor(model => model.Customer.Country)').val());
 
-    $('#@Html.IdFor(model => model.Country)').change(function () {
+    $('#@Html.IdFor(model => model.Customer.Country)').change(function () {
     var countryId = $(this).val();
     getCities(countryId);
     });
@@ -45,11 +45,11 @@
     $.getJSON('@Url.Action("Cities", "Customers")?countryId=' + countryId)
     .done(function (data) {
 
-    $('#@Html.IdFor(model => model.City) option').remove();
+    $('#@Html.IdFor(model => model.Customer.City) option').remove();
 
     $.each(data, function (index, item) {
     var option = $('<option>').val(item.id).text(item.name);
-        $('#@Html.IdFor(model => model.City)').append(option);
+        $('#@Html.IdFor(model => model.Customer.City)').append(option);
         });
 
 

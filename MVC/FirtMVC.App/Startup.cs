@@ -1,3 +1,4 @@
+using FirtMVC.App.Entities;
 using FirtMVC.App.Repos;
 using FirtMVC.App.Sample;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +12,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
 
 namespace FirtMVC.App
 {
@@ -28,16 +31,22 @@ namespace FirtMVC.App
         {
             services.AddControllersWithViews();
 
-            //services.AddTransient<CustomersService>();
+            services.AddDbContext<DemoDbContext>(options =>
+            {
+                options.UseSqlServer("Data Source=.;Initial Catalog=DotNetCoreDemo;Integrated Security=True");
+            });
 
-            //services.AddScoped<CountriesService>();
 
-            //services.AddSingleton<IRepository, SqlRepository>();
+            services.AddTransient<CustomersService>();
 
-            //services.AddSingleton<SqlConnection>(
-            //    (service) => new SqlConnection("Data Source=.;Initial Catalog=BookStore08;Integrated Security=True"));
+            services.AddScoped<CountriesService>();
 
-            
+            services.AddSingleton<IRepository, SqlRepository>();
+
+            services.AddSingleton<SqlConnection>(
+                (service) => new SqlConnection("Data Source=.;Initial Catalog=BookStore08;Integrated Security=True"));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

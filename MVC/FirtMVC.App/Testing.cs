@@ -23,8 +23,8 @@ namespace FirtMVC.App
             CustomersService customersService
                 = new CustomersService(repository, countriesService);
 
-            CustomersController customersController 
-                = new CustomersController(customersService, countriesService);
+            //CustomersController customersController 
+            //    = new CustomersController(new Entities.DemoDbContext());
         }
     }
 }

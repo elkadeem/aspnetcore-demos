@@ -1,4 +1,5 @@
 ﻿using FirtMVC.App.Entities;
+using FirtMVC.App.Models;
 using FirtMVC.App.Repos;
 using FirtMVC.App.Sample;
 using Microsoft.AspNetCore.Mvc;
@@ -48,22 +49,20 @@ namespace FirtMVC.App.Controllers
         };
         private readonly CustomersService customersService;
         private readonly CountriesService countriesService;
+        private readonly DemoDbContext demoDbContext;
 
-        public CustomersController()
+        public CustomersController(DemoDbContext demoDbContext, CountriesService countriesService)
         {
-            SqlConnection connection = new SqlConnection("Connection string");
-            IRepository repository = new SqlRepository(connection);
-            this.countriesService = new CountriesService(repository);
-            this.customersService = new CustomersService(repository, countriesService);
+            this.demoDbContext = demoDbContext ?? throw new ArgumentNullException(nameof(demoDbContext));
+            this.countriesService = countriesService;
         }
         // GET: CustomersController
         public IActionResult Index()
         {
-            var items =  Customers
-                .OrderBy(c => c.Name)
+            var customers = demoDbContext.Customers.OrderBy(c => c.Name)
                 .ToList();
 
-            return View(items);
+            return View(customers);
         }
 
         // GET: CustomersController/Details/5
@@ -80,7 +79,7 @@ namespace FirtMVC.App.Controllers
         // GET: CustomersController/Create
         public ActionResult Create()
         {
-            Customer model = new Customer();
+            CustomerViewModel model = new CustomerViewModel();
             model.Countries = FillCountries();
             return View(model);
         }
@@ -88,42 +87,44 @@ namespace FirtMVC.App.Controllers
         // POST: CustomersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(CustomerViewModel model)
         {
             
             try
             {               
-                if (customer.Tags == null || customer.Tags.Count == 0)
+                if (model.Tags == null || model.Tags.Count == 0)
                 {
                     ModelState.AddModelError("Tags", "يجب أختيار تاج واحد علي الأقل.");
                 }
 
-                if (customer.Birthdate > DateTime.Today.AddYears(-18))
+                if (model.Customer.Birthdate > DateTime.Today.AddYears(-18))
                 {
                     ModelState.AddModelError("Birthdate", "يجب أن تكون أكبر من 18 عام");
                 }
 
-                if(Customers.Any(c => c.Email== customer.Email))
+                if(Customers.Any(c => c.Email== model.Customer.Email))
                 {
                     ModelState.AddModelError("", "الإيميل مكرر");
                 }
 
                 if (!ModelState.IsValid)   // If(Page.IsValid)
                 {
-                    customer.Countries = FillCountries();
-                    return View(customer);
+                    model.Countries = FillCountries();
+                    return View(model);
                 }
 
-                customer.Id = Guid.NewGuid();
-                Customers.Add(customer);
+                model.Customer.Tags = string.Join(";", model.Tags);
+                demoDbContext.Customers.Add(model.Customer);
+                demoDbContext.SaveChanges();
+
                 TempData["Message"] = "Succeeded";
                 //Fire Event Country Create
-                return RedirectToAction(nameof(Details), new { customer.Id });
+                return RedirectToAction(nameof(Details), new { model.Customer.Id });
             }
             catch
             {
-                customer.Countries = FillCountries();
-                return View(customer);
+                model.Countries = FillCountries();
+                return View(model);
             }
         }
 
@@ -135,41 +136,45 @@ namespace FirtMVC.App.Controllers
             if (customer == null)
                 return NotFound();
 
-            customer.Countries = FillCountries();
-            return View(customer);
+            CustomerViewModel model = new CustomerViewModel() { Customer = customer };
+            model.Tags = customer.Tags.Split(";").ToList();
+            model.Countries = FillCountries(); 
+            return View(model);
         }
 
         // POST: CustomersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Guid id, [Bind("Name", "Phone", "Birthdate", "Country", "Tags")][FromBody]Customer customer)
+        public ActionResult Edit(Guid id, CustomerViewModel model)
         {
             try
             {
                 if (!ModelState.IsValid)   // If(Page.IsValid)
                 {
-                    customer.Countries = FillCountries();
-                    return View(customer);
+                    model.Countries = FillCountries();
+                    return View(model);
                 }
 
-                var item = Customers.FirstOrDefault(c => c.Id == id);
+                var item = demoDbContext.Customers.FirstOrDefault(c => c.Id == id);
 
                 if (item == null)
                     return NotFound();
 
-                item.Birthdate = customer.Birthdate;
-                item.Country = customer.Country;
-                //item.Email = customer.Email;
-                //item.IsActive = customer.IsActive;
-                item.Name = customer.Name;
-                item.Phone = customer.Phone;
+                item.Birthdate = model.Customer.Birthdate;
+                item.Country = model.Customer.Country;
+                item.Email = model.Customer.Email;
+                item.IsActive = model.Customer.IsActive;
+                item.Name = model.Customer.Name;
+                item.Phone = model.Customer.Phone;
+                item.Tags = string.Join(";", model.Tags);
 
+                demoDbContext.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                customer.Countries = FillCountries();
-                return View(customer);
+                model.Countries = FillCountries();
+                return View(model);
             }
         }
 
@@ -191,12 +196,13 @@ namespace FirtMVC.App.Controllers
         {
             try
             {
-                var item = Customers.FirstOrDefault(c => c.Id == id);
+                var item = demoDbContext.Customers.FirstOrDefault(c => c.Id == id);
 
                 if (item == null)
                     return NotFound();
 
-                Customers.Remove(item);
+                demoDbContext.Customers.Remove(item);
+                demoDbContext.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

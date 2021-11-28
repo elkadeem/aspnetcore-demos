@@ -1,48 +1,48 @@
-﻿@model FirtMVC.App.Entities.Customer
+﻿@model FirtMVC.App.Models.CustomerViewModel
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="form-group">
-    <label asp-for="Name" class="control-label"></label>
-    <input asp-for="Name" class="form-control" />
-    <span asp-validation-for="Name" class="text-danger"></span>
+    <label asp-for="Customer.Name" class="control-label"></label>
+    <input asp-for="Customer.Name" class="form-control" />
+    <span asp-validation-for="Customer.Name" class="text-danger"></span>
     <span id="nameCharachers" ></span>
 </div>
 <div class="form-group">
-    <label asp-for="Phone" class="control-label"></label>
-    <input asp-for="Phone" class="form-control" />
-    <span asp-validation-for="Phone" class="text-danger"></span>
+    <label asp-for="Customer.Phone" class="control-label"></label>
+    <input asp-for="Customer.Phone" class="form-control" />
+    <span asp-validation-for="Customer.Phone" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="Email" class="control-label"></label>
-    <input asp-for="Email" class="form-control" />
-    <span asp-validation-for="Email" class="text-danger"></span>
+    <label asp-for="Customer.Email" class="control-label"></label>
+    <input asp-for="Customer.Email" class="form-control" />
+    <span asp-validation-for="Customer.Email" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="Birthdate" class="control-label"></label>
-    <input asp-for="Birthdate" class="form-control" />
-    <span asp-validation-for="Birthdate" class="text-danger"></span>
+    <label asp-for="Customer.Birthdate" class="control-label"></label>
+    <input asp-for="Customer.Birthdate" class="form-control" />
+    <span asp-validation-for="Customer.Birthdate" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="Country" class="control-label"></label>
+    <label asp-for="Customer.Country" class="control-label"></label>
     @*<select asp-for="Country" asp-items="@((SelectList)ViewBag.Countries)" class="form-control">
             <option value="0">Select</option>
         </select>*@
-    <select asp-for="Country" asp-items="@Model.Countries" class="form-control">
+    <select asp-for="Customer.Country" asp-items="@Model.Countries" class="form-control">
             <option value="0">Select</option>
         </select>
-    <span asp-validation-for="Country" class="text-danger"></span>
+    <span asp-validation-for="Customer.Country" class="text-danger"></span>
 </div>
 <div class="form-group">
-    <label asp-for="City" class="control-label"></label>   
-    <select asp-for="City" class="form-control">        
+    <label asp-for="Customer.City" class="control-label"></label>   
+    <select asp-for="Customer.City" class="form-control">        
     </select>
-    <span asp-validation-for="City" class="text-danger"></span>
+    <span asp-validation-for="Customer.City" class="text-danger"></span>
 </div>
 <div class="form-group">
     <fieldset>
         <legend>@Html.DisplayNameFor(model => model.Tags)</legend>
         <div class="form-group form-check">
-            @for (int i = 1; i <= 10; i++)
+            @for (int i = 0; i <= 10; i++)
             {
                 <div>
                     <label class="form-check-label">
@@ -57,6 +57,6 @@
 </div>
 <div class="form-group form-check">
     <label class="form-check-label">
-        <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+        <input class="form-check-input" asp-for="Customer.IsActive" /> @Html.DisplayNameFor(model => model.Customer.IsActive)
     </label>
 </div>

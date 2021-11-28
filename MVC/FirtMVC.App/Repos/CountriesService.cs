@@ -19,7 +19,7 @@ namespace FirtMVC.App.Repos
 
         public List<Country> GetAll()
         {
-            return null;
+            return repository.Countries();
         }
     }
 }
