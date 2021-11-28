@@ -37,7 +37,7 @@ namespace ConsoleAppForDI
             MailService mailService1 = new MailService(sMTPService);
             mailService1.Send();
 
-            StudentService studentService2 = new StudentService(new List<IMailService> { mailService1, new SMSService() });
+            StudentService studentService2 = new StudentService(new IMailService[] { mailService1, new SMSService() });
             studentService2.Register();
 
             studentService2.ShowResult();
