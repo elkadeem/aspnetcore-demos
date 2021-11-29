@@ -20,6 +20,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppForDI", "ConsoleA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFDemo", "EFDemo\EFDemo.csproj", "{88F5A9E0-9F2D-49C3-8D09-5447BA0BBA69}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{1FBAF797-80C9-47E4-BB0B-1F54AA6B24FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityDemo", "IdentityDemo\IdentityDemo.csproj", "{0E899FCF-D340-48AE-9F48-1096A966039D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,12 +50,17 @@ Global
 		{88F5A9E0-9F2D-49C3-8D09-5447BA0BBA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F5A9E0-9F2D-49C3-8D09-5447BA0BBA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F5A9E0-9F2D-49C3-8D09-5447BA0BBA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E899FCF-D340-48AE-9F48-1096A966039D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E899FCF-D340-48AE-9F48-1096A966039D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E899FCF-D340-48AE-9F48-1096A966039D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E899FCF-D340-48AE-9F48-1096A966039D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DF11DBFE-D6CC-4633-BDD0-9D562B6B6F6F} = {E2ABA0E7-2DEA-4471-9499-D5CDA1A1AB3F}
+		{0E899FCF-D340-48AE-9F48-1096A966039D} = {1FBAF797-80C9-47E4-BB0B-1F54AA6B24FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D98E5E3-25A7-47E9-A4C5-0ED16452BF8D}
