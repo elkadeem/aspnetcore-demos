@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityDemo", "IdentityDemo\IdentityDemo.csproj", "{0E899FCF-D340-48AE-9F48-1096A966039D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthWithoutIIdentity", "AuthWithoutIIdentity\AuthWithoutIIdentity.csproj", "{105208B7-616D-4C5D-9CEA-559BE5144703}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{0E899FCF-D340-48AE-9F48-1096A966039D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E899FCF-D340-48AE-9F48-1096A966039D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E899FCF-D340-48AE-9F48-1096A966039D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{105208B7-616D-4C5D-9CEA-559BE5144703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{105208B7-616D-4C5D-9CEA-559BE5144703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{105208B7-616D-4C5D-9CEA-559BE5144703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{105208B7-616D-4C5D-9CEA-559BE5144703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DF11DBFE-D6CC-4633-BDD0-9D562B6B6F6F} = {E2ABA0E7-2DEA-4471-9499-D5CDA1A1AB3F}
 		{0E899FCF-D340-48AE-9F48-1096A966039D} = {1FBAF797-80C9-47E4-BB0B-1F54AA6B24FB}
+		{105208B7-616D-4C5D-9CEA-559BE5144703} = {1FBAF797-80C9-47E4-BB0B-1F54AA6B24FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D98E5E3-25A7-47E9-A4C5-0ED16452BF8D}
