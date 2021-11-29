@@ -14,6 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace FirtMVC.App
 {
@@ -45,6 +47,10 @@ namespace FirtMVC.App
 
             services.AddSingleton<SqlConnection>(
                 (service) => new SqlConnection("Data Source=.;Initial Catalog=BookStore08;Integrated Security=True"));
+
+            services.Configure<MvcOptions>(options => {
+                options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+            });
 
 
         }

@@ -1,6 +1,7 @@
 ﻿using EFDemo.Genertated;
 using System;
 using System.Linq;
+using System.Net.Http;
 
 namespace EFDemo
 {
@@ -8,6 +9,7 @@ namespace EFDemo
     {
         static void Main(string[] args)
         {
+
             CustomDbContext dbContext = new CustomDbContext();
 
             dbContext.Customers.Add(new Customer
