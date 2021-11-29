@@ -47,6 +47,11 @@ namespace EFDemo
             modelBuilder.Entity<OrderItem>()
                 .HasKey(c => new { c.OrderId, c.Serial });
 
+
+            modelBuilder.Entity<User>()
+                .HasMany(c => c.Roles)
+                .WithMany(c => c.Users);
+
         }
     }
 }

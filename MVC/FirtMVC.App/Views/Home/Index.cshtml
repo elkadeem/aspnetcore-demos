@@ -10,3 +10,5 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@(await Component.InvokeAsync("CustomerDetails", new Guid("fd409801-a592-4e96-9982-08d9b315ffec")))

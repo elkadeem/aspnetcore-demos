@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FirtMVC.App.Entities.Customer>
+﻿@using FirtMVC.App.Components
+
+@model IEnumerable<FirtMVC.App.Entities.Customer>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,12 +8,13 @@
 
 <h1>Index</h1>
 
+@await Component.InvokeAsync("CustomerData")
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
-        <tr>            
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -36,7 +39,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>                
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>

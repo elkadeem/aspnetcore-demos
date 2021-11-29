@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Swashbuckle.AspNetCore;
 
 namespace FirtMVC.App
 {
@@ -32,6 +33,8 @@ namespace FirtMVC.App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddRazorPages();
 
             services.AddDbContext<DemoDbContext>(options =>
             {
@@ -52,6 +55,7 @@ namespace FirtMVC.App
                 options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
             });
 
+            services.AddSwaggerGen();
 
         }
 
@@ -71,6 +75,11 @@ namespace FirtMVC.App
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
+            app.UseSwaggerUI();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -80,6 +89,8 @@ namespace FirtMVC.App
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

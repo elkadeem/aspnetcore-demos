@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirtMVC.App", "MVC\FirtMVC.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppForDI", "ConsoleAppForDI\ConsoleAppForDI.csproj", "{A1216CC8-8ADE-42D0-98DE-5BEDF316BFE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFDemo", "EFDemo\EFDemo.csproj", "{88F5A9E0-9F2D-49C3-8D09-5447BA0BBA69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFDemo", "EFDemo\EFDemo.csproj", "{88F5A9E0-9F2D-49C3-8D09-5447BA0BBA69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

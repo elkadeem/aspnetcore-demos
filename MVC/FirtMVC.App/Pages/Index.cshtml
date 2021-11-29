@@ -1,0 +1,9 @@
+﻿@page
+@model FirtMVC.App.Pages.IndexModel
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>@Model.Name</div>
+
+@(await Component.InvokeAsync("CustomerDetails", new Guid("fd409801-a592-4e96-9982-08d9b315ffec")))
